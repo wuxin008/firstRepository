@@ -61,4 +61,4 @@ void putINfor(struct Student stu)
 		printf("%f  ", stu.grade[i]);
 	}
 	printf("平均成绩为%f", stu.aver);
-}
+} 
