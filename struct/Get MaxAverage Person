@@ -1,0 +1,64 @@
+#include<stdio.h>
+
+struct Student
+{
+	int studentID;
+	char name[20];
+	double grade[3];
+	double aver;
+};
+
+int main()
+{
+	//函数声明
+	void getINfor(struct Student stu[2], int n);
+	struct Student getMax(struct Student stu[2], int n);
+	void putINfor(struct Student stu);
+
+	struct Student student[2] = { {0}, {0} };
+	struct Student* s_p = student;
+	int i;
+	for (i = 0; i < 2; i++)
+	{
+		getINfor(student, i);
+	}
+	printf("平均分最高的是");
+	putINfor(getMax(s_p, 2));
+	return 0;
+}
+
+//输入信息
+void getINfor(struct Student stu[2], int n)
+{
+	printf("请输入学生ID 姓名 各科分数\n");
+	scanf("%d %s %lf %lf %lf", &(stu + n)->studentID, (stu + n)->name, &(stu + n)->grade[0], &(stu + n)->grade[1], &(stu + n)->grade[2]);
+	double sum = 0;
+	int i;
+	for (i = 0; i < 3; i++)
+	{
+		sum += (stu + n)->grade[i];
+	}
+	(stu + n)->aver = sum / 3.0;
+}
+//找出平均数最高的人
+struct Student getMax(struct Student stu[2], int n)
+{
+	int i, k = 0;
+	for (i = 0; i < n; i++)
+	{
+		if ((stu + k)->aver < (stu + i)->aver)
+			k = i;
+	}
+	return stu[k];
+}
+//输出学生信息
+void putINfor(struct Student stu)
+{
+	int i;
+	printf("%s  id为%d,各科成绩为  ", stu.name, stu.studentID);
+	for (i = 0; i < 3; i++)
+	{
+		printf("%f  ", stu.grade[i]);
+	}
+	printf("平均成绩为%f", stu.aver);
+}
