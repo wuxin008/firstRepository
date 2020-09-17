@@ -1,0 +1,57 @@
+#include<stdio.h>
+
+int main()
+{
+	enum ballColor { red, yellow, blue, white, black  };
+
+	enum ballColor i, j, k;
+	int n = 0, loop;
+	for (i = red; i <= black; i++)
+	{
+		for (j = red; j <= black; j++)
+		{
+			if (j != i)
+				for (k = red; k <= black; k++)
+					if (i != k && j != k)
+					{
+						n++;
+						int pre;
+						printf("这是第%d个", n);
+						for (loop = 1; loop <= 3; loop++)
+						{
+							switch (loop)
+							{
+							case 1:
+								pre = i;
+								break;
+							case 2:
+								pre = j;
+								break;
+							case 3:
+								pre = k;
+								break;
+							}
+							switch (pre)
+							{
+							case red:
+								printf("red   ");
+								break;
+							case yellow:
+								printf("yellow   ");
+								break;
+							case blue:
+								printf("blue   ");
+								break;
+							case white:
+								printf("white   ");
+								break;
+							case black:
+								printf("black   ");
+							}
+						}
+						printf("\n");
+					}
+						
+		}
+	}
+}
