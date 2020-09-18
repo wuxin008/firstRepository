@@ -1,0 +1,26 @@
+#include<stdio.h>
+
+struct Student
+{
+	char name[20];
+	int age;
+}stud[10];
+
+int main()
+{
+	FILE* fp;
+	if ((fp = fopen("file,dat", "rb")) == NULL)
+	{
+		printf("文件打开失败!\a\n");
+		return 0;
+	}
+	int i;
+	for (i = 0; i < 10; i++)
+	{
+		fread(&stud[i], sizeof(struct Student), 1, fp);
+		printf("%s的年龄为%d\n", stud[i].name, stud[i].age);
+	}
+	printf("数据输出完成\n");
+	fclose(fp);
+	return 0;
+}
