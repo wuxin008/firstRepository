@@ -1,0 +1,30 @@
+#include<stdio.h>
+
+struct Student
+{
+	char name[20];
+	int age;
+}stud[10];
+
+int main()
+{
+	FILE* fp;
+	if ((fp = fopen("file,dat", "wb")) == NULL)
+	{
+		printf("文件打开失败!\a\n");
+		return 0;
+	}
+	int i;
+	for (i = 0; i < 10; i++)
+	{
+		printf("请输入第%d个学生名字和年龄\n", i + 1);
+		scanf("%s %d", stud[i].name, &stud[i].age);
+	}
+	for (i = 0; i < 10; i++)
+	{
+		fwrite(&stud[i], sizeof(struct Student), 1, fp);
+	}
+	printf("数据存入成功\n");
+	fclose(fp);
+	return 0;
+}
