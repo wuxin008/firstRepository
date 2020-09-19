@@ -53,7 +53,7 @@ int getINfor()
 int putINfor()
 {
 	FILE* fp;
-	if ((fp = fopen("file.dat", "r")) == NULL)
+	if ((fp = fopen("file.dat", "rb")) == NULL)
 	{
 		printf("文件打开失败!\a\n");
 		return 1;
