@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	FILE * write;
+	if ((write = fopen("test.vbs", "w")) == NULL)
+	{
+		printf("写入文件打开失败!\a\n");
+		return 0;
+	}
+	char String[3][100] = { {"CreateObject(\"SAPI.SpVoice\").Speak\""}, {""}, {"\""} };
+	printf("请输入你想计算机阅读的文字:\n");
+	scanf("%s", String[1]);
+	int i;
+	for (i = 0; i < 3; i++)
+	{
+		fputs(String[i], write);
+	}
+	fclose(write);
+	printf("正在阅读文字...\n");
+	system("test.vbs");
+	printf("文字阅读完成\n");
+	return 0;
+}
